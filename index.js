@@ -8,21 +8,21 @@ const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
 const { execSync } = require('child_process');        // 只填写UPLOAD_URL将上传节点,同时填写UPLOAD_URL和PROJECT_URL将上传订阅
 const UPLOAD_URL = process.env.UPLOAD_URL || '';      // 节点或订阅自动上传地址,需填写部署Merge-sub项目后的首页地址,例如：https://merge.xxx.com
-const PROJECT_URL = process.env.PROJECT_URL || 'https://whyalay.apps.apply.build';    // 需要上传订阅或保活时需填写项目分配的url,例如：https://google.com
-const AUTO_ACCESS = process.env.AUTO_ACCESS || true; // false关闭自动保活，true开启,需同时填写PROJECT_URL变量
+const PROJECT_URL = process.env.PROJECT_URL || '';    // 需要上传订阅或保活时需填写项目分配的url,例如：https://google.com
+const AUTO_ACCESS = process.env.AUTO_ACCESS || false; // false关闭自动保活，true开启,需同时填写PROJECT_URL变量
 const FILE_PATH = process.env.FILE_PATH || './tmp';   // 运行目录,sub节点文件保存目录
 const SUB_PATH = process.env.SUB_PATH || 'sub';       // 订阅路径
 const PORT = process.env.SERVER_PORT || process.env.PORT || 3000;        // http服务订阅端口
-const UUID = process.env.UUID || '4cfb4441-abc6-4318-aa5e-7f0cf7a59941'; // 使用哪吒v1,在不同的平台运行需修改UUID,否则会覆盖
+const UUID = process.env.UUID || 'bf1520fe-ea2b-4994-98de-9ae79dab5b30'; // 使用哪吒v1,在不同的平台运行需修改UUID,否则会覆盖
 const NEZHA_SERVER = process.env.NEZHA_SERVER || '150.40.179.110:8008';        // 哪吒v1填写形式: nz.abc.com:8008  哪吒v0填写形式：nz.abc.com
 const NEZHA_PORT = process.env.NEZHA_PORT || '';            // 使用哪吒v1请留空，哪吒v0需填写
 const NEZHA_KEY = process.env.NEZHA_KEY || '4AhItZhE0hgDQ6EMnqDYX0XAtfmdjw4b';              // 哪吒v1的NZ_CLIENT_SECRET或哪吒v0的agent密钥
-const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'applybuild.223422.xyz';          // 固定隧道域名,留空即启用临时隧道
-const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiNWFmNzY0ZjI4NzQ4ZmVhOTU0N2RiNWViYjYwNTRkN2UiLCJ0IjoiYjU2MGViY2QtMDE4Ny00YjJlLThkNjMtODJlNTAwYzliMDgxIiwicyI6IlpqRTRZMlJrTmpNdE9HVTVZaTAwTVRSakxXSTNPR0l0TlRSa1lUbG1PR1V5T0dOaCJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
+const ARGO_DOMAIN = process.env.ARGO_DOMAIN || 'scalewayml.223422.xyz';          // 固定隧道域名,留空即启用临时隧道
+const ARGO_AUTH = process.env.ARGO_AUTH || 'eyJhIjoiNWFmNzY0ZjI4NzQ4ZmVhOTU0N2RiNWViYjYwNTRkN2UiLCJ0IjoiNDM5YjVlZTYtMjQ5ZC00NTRmLWE3YzItYzRhMTIxNDc5MTNhIiwicyI6IlptVmxaVEJoTW1FdFpHSXlPQzAwT1RWbExUaGpPVEl0T1RVNFptWTJaVFZqWmpneSJ9';              // 固定隧道密钥json或token,留空即启用临时隧道,json获取地址：https://json.zone.id
 const ARGO_PORT = process.env.ARGO_PORT || 8001;            // 固定隧道端口,使用token需在cloudflare后台设置和这里一致
 const CFIP = process.env.CFIP || 'cf.877774.xyz';        // 节点优选域名或优选ip  
 const CFPORT = process.env.CFPORT || 443;                   // 节点优选域名或优选ip对应的端口
-const NAME = process.env.NAME || 'applybuild';                        // 节点名称
+const NAME = process.env.NAME || 'scalewayml';                        // 节点名称
 
 // 创建运行文件夹
 if (!fs.existsSync(FILE_PATH)) {
